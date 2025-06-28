@@ -10,7 +10,7 @@ Fila* criarFila()
     {
         f->ini = f->fim = NULL;
     }
-    return NULL;
+    return f;
 }
 
 int estaVazia(Fila *f)
@@ -18,12 +18,12 @@ int estaVazia(Fila *f)
     return (f->ini == NULL);
 }
 
-float remover(Fila* f)
+int removerDaFila(Fila* f)
 {
     if(!estaVazia(f))
     {
         NoFila *aux;
-        float rm = 0;
+        int rm = 0;
 
         aux = f->ini;
         rm = aux->info;
@@ -44,7 +44,7 @@ float remover(Fila* f)
     }
 }
 
-void inserirFila(Fila* f, float v)
+void inserirFila(Fila* f, int v)
 {
     NoFila *novo = (NoFila*)malloc(sizeof(NoFila));
 

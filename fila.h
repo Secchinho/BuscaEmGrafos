@@ -1,6 +1,6 @@
 typedef struct nofila
 {
-    float info;
+    int info;
     struct nofila *prox;
 }NoFila;
 
@@ -11,7 +11,7 @@ typedef struct fila{
 
 Fila* criarFila();
 int estaVazia(Fila *f);
-float remover(Fila* f);
-void inserirFila(Fila* f, float v);
+int removerDaFila(Fila* f);
+void inserirFila(Fila* f, int v);
 void liberarFila(Fila* f);
 void imprimeFila(Fila* f);
