@@ -4,6 +4,7 @@
 #include "grafo.h"
 #define CANAIS 100
 
+
 void bLargura(Grafo* g, int v, int visita[CANAIS]) {
     Fila *f = criarFila();
     for (int i = 0; i < CANAIS; i++)
@@ -23,3 +24,4 @@ void bLargura(Grafo* g, int v, int visita[CANAIS]) {
         }
     }
 }
+

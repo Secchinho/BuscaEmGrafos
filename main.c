@@ -6,7 +6,7 @@
 #include "buscaL.h"
 #define CANAIS 100
 
-int main(int argc, char const *argv[])
+int main()
 {
     int canAtual = 0;
     int canTv = 0;
@@ -17,32 +17,26 @@ int main(int argc, char const *argv[])
 
     Grafo g;
 
-    if(argc != 2)
-    {
-        exit(1);
-    }
-
-    FILE *arq = fopen(argv[1], "r");
-
-    //Lendo a primeira linha do arquivo
-    fscanf(arq, "%d %d %d", &canAtual, &canTv, &qtdAdulto);
+    // Lendo da entrada padrão (stdin), usando "<"
+    scanf("%d %d %d", &canAtual, &canTv, &qtdAdulto);
 
     for(int i = 0; i < qtdAdulto; i++)
     {
-        fscanf(arq, "%d", &numCanAdult);
+        scanf("%d", &numCanAdult);
+        // Acessa o índice correto (canal 1 está no índice 0)
         canAdulto[numCanAdult-1] = true;
     }
 
     construirGrafo(&g, canAdulto);
 
+    // Converte para os índices 0-99 para a busca
     canAtual--;
     canTv--;
     
     bLargura(&g, canAtual, visita);
 
-    printf("Número mínimo de cliques: %d\n", visita[canTv]);
+    // Imprime o resultado final como nos exemplos
+    printf("A quantidade de cliques para atingir o canal correto é: %d\n", visita[canTv]);
 
-
-    fclose(arq);
     return 0;
 }

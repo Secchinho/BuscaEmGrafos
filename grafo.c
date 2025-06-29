@@ -8,14 +8,19 @@ void construirGrafo(Grafo *g, bool canAdulto[CANAIS])
 {
     for (int canal = 0; canal < CANAIS; canal++)
     {
+        //Inicializando o grau para todos os canais
+        g->grau[canal] = 0;
+
+        //Pula os canais adultos
         if(canAdulto[canal]){
             continue;
         }
 
-        g->grau[canal] = 0;
+        int vizinho; //Canal atingível após um clique
+        int canal_real = canal + 1; // Para os cálculos matemáticos, já que o canal está armazenado em um vetor de 0 a 99
 
         //Botão para somar 1
-        int vizinho = (canal + 1) % CANAIS;
+        vizinho = (canal + 1) % CANAIS;
         if(!canAdulto[vizinho]){
             g->listaAdj[canal][g->grau[canal]++] = vizinho;
         }
@@ -27,36 +32,34 @@ void construirGrafo(Grafo *g, bool canAdulto[CANAIS])
         else{
             vizinho = canal - 1;
         }
-
         if(!canAdulto[vizinho]){
             g->listaAdj[canal][g->grau[canal]++] = vizinho;
         }
 
         //Botão para multiplicar por 2
-        if(canal < CANAIS / 2){
-            vizinho = canal *2;
+        if(canal_real < 51){
+            vizinho = (canal_real * 2) - 1;
             if(!canAdulto[vizinho]){
                 g->listaAdj[canal][g->grau[canal]++] = vizinho;
             }
         }
 
-        //Botão para multiplicar por 3
-        if(canal * 3 < CANAIS){
-            vizinho = canal * 3;
+        //Botão para dividir por 2
+        if(canal_real % 2 == 0){
+            vizinho = (canal_real / 2) - 1;
             if(!canAdulto[vizinho])
             {
                 g->listaAdj[canal][g->grau[canal]++] = vizinho;
             }
         }
 
-        //Botão para dividir por 2
-        if(canal % 2 == 0){
-            vizinho = canal / 2;
+        //Botão para multiplicar por 3
+        if(canal_real < 34){
+            vizinho = (canal_real * 3) - 1;
             if(!canAdulto[vizinho])
             {
                 g->listaAdj[canal][g->grau[canal]++] = vizinho;
             }
         }
-        
     }
 }
