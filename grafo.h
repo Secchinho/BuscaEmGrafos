@@ -3,7 +3,7 @@
 #define VIZINHOS 5
 
 typedef struct grafo {
-    int listaAdj[CANAIS][VIZINHOS];
+    int listaAdj[CANAIS][VIZINHOS]; //Matriz que simula uma lista de adjacencia
     int grau[CANAIS];
 } Grafo;
 

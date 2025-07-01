@@ -12,19 +12,19 @@ int main()
     int canTv = 0;
     int numCanAdult = 0;
     int qtdAdulto = 0;
-    int visita[CANAIS];
+    int visita[CANAIS]; //armazena a quantidade de cliques para visita de cada canal
     bool canAdulto[CANAIS] = {false};
 
     Grafo g;
 
-    // Lendo da entrada padrão (stdin), usando "<"
+    // Lendo a entrada padrão (stdin), usando "<"
     scanf("%d %d %d", &canAtual, &canTv, &qtdAdulto);
 
     for(int i = 0; i < qtdAdulto; i++)
     {
         scanf("%d", &numCanAdult);
-        // Acessa o índice correto (canal 1 está no índice 0)
-        canAdulto[numCanAdult-1] = true;
+        // Acessa o índice correto, já que o vetor vai de 0 a 99
+        canAdulto[numCanAdult - 1] = true;
     }
 
     construirGrafo(&g, canAdulto);
@@ -35,8 +35,15 @@ int main()
     
     bLargura(&g, canAtual, visita);
 
-    // Imprime o resultado final como nos exemplos
-    printf("A quantidade de cliques para atingir o canal correto é: %d\n", visita[canTv]);
+    // Imprime o resultado final
+    if(visita[canTv] != -1)
+    {
+        printf("\nA quantidade de cliques para atingir o canal correto é: %d\n", visita[canTv]);
+    }
+    else
+    {
+        printf("\nImpossível chegar ao canal misericórdia sem passar por um canal adulto\n");
+    }
 
     return 0;
 }

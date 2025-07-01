@@ -12,41 +12,48 @@ void construirGrafo(Grafo *g, bool canAdulto[CANAIS])
         g->grau[canal] = 0;
 
         //Pula os canais adultos
-        if(canAdulto[canal]){
+        if(canAdulto[canal])
+        {
             continue;
         }
 
         int vizinho; //Canal atingível após um clique
-        int canal_real = canal + 1; // Para os cálculos matemáticos, já que o canal está armazenado em um vetor de 0 a 99
+        int canalReal = canal + 1; // Para os cálculos, já que o canal está armazenado em um vetor de 0 a 99
 
         //Botão para somar 1
-        vizinho = (canal + 1) % CANAIS;
-        if(!canAdulto[vizinho]){
+        vizinho = canalReal % CANAIS;
+        if(!canAdulto[vizinho])
+        {
             g->listaAdj[canal][g->grau[canal]++] = vizinho;
         }
 
         //Botão para subtrair 1
-        if (canal == 0){
+        if (canal == 0)
+        {
             vizinho = 99;
         }
-        else{
+        else
+        {
             vizinho = canal - 1;
         }
-        if(!canAdulto[vizinho]){
+        if(!canAdulto[vizinho])
+        {
             g->listaAdj[canal][g->grau[canal]++] = vizinho;
         }
 
         //Botão para multiplicar por 2
-        if(canal_real < 51){
-            vizinho = (canal_real * 2) - 1;
-            if(!canAdulto[vizinho]){
+        if(canalReal < 51)
+        {
+            vizinho = (canalReal * 2) - 1;
+            if(!canAdulto[vizinho])
+            {
                 g->listaAdj[canal][g->grau[canal]++] = vizinho;
             }
         }
 
         //Botão para dividir por 2
-        if(canal_real % 2 == 0){
-            vizinho = (canal_real / 2) - 1;
+        if(canalReal % 2 == 0){
+            vizinho = (canalReal / 2) - 1;
             if(!canAdulto[vizinho])
             {
                 g->listaAdj[canal][g->grau[canal]++] = vizinho;
@@ -54,8 +61,8 @@ void construirGrafo(Grafo *g, bool canAdulto[CANAIS])
         }
 
         //Botão para multiplicar por 3
-        if(canal_real < 34){
-            vizinho = (canal_real * 3) - 1;
+        if(canalReal < 34){
+            vizinho = (canalReal * 3) - 1;
             if(!canAdulto[vizinho])
             {
                 g->listaAdj[canal][g->grau[canal]++] = vizinho;
